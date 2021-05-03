@@ -1,9 +1,11 @@
 {% extends "library/base.html" %}
 {% block content %}
-    <h2>You have been logged out!</h2>
-    <div class ="border-top pt-3">
-        <small class ="text-muted">
-            <a href ="{% url 'login' %}">Login</a>
-        </small>
-    </div>
+    <article class="media content-section">
+        <div class="media-body">
+            <h2><a class="article-title">You have been logged out!</a></h2>
+            <small class ="text-muted">
+                <a href ="{% url 'login' %}">Login</a>
+            </small>
+        </div>
+    </article>
 {% endblock content %}
