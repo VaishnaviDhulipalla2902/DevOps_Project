@@ -18,6 +18,9 @@ def home(request):
     }
     return render(request, 'library/home.html', context)
 
+def about(request):
+    return render(request, 'library/about.html', {'title': 'About'})
+
 class PostListView(ListView):
     model=Post
     template_name = 'library/home.html'
@@ -69,8 +72,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-def about(request):
-    return render(request, 'library/about.html', {'title': 'About'})
 """ 
 class BookDisplay():
     model = Books """
