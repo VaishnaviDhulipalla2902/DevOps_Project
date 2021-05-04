@@ -11,7 +11,6 @@ from django.views.generic import (
 )
 from .models import Post
 # from django.http import HttpResponse
-
 def home(request):
     context={
         'posts' : Post.objects.all()
@@ -25,7 +24,7 @@ class PostListView(ListView):
     model=Post
     template_name = 'library/home.html'
     context_object_name = 'posts'
-    ordering = ['-date_posted']
+    ordering = ['-date_posted'] 
 
 class UserPostListView(ListView):
     model = Post
@@ -42,7 +41,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'book_img']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -50,7 +49,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'book_img']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
