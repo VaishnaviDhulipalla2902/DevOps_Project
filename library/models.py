@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
 
+MAX_WIDTH = 200
+MAX_LEN = 700
 
 class Post(models.Model):
     title = models.CharField(max_length=100, help_text="Please enter the NAME of the book and its AUTHOR!")
@@ -17,6 +19,14 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+    def save(self):
+        super().save()
+        img = Image.open(self.book_img.path)
+        if img.height > MAX_LEN or img.width > MAX_WIDTH :
+            output_size = (MAX_LEN, MAX_WIDTH)
+            img.thumbnail(output_size)
+            img.save(self.book_img.path)
     
 """ 
 class Books(models.Model):
