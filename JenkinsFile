@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    stages{
+        stage('Build')
+        {
+            parallel {
+                stage('Build'){
+                    steps{
+                        echo 'Building the django project'
+                    }
+                }
+                stage('Test'){
+                    steps{
+                        echo 'Testing the project'
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps{
+                echo 'Deploying the project'
+            }
+        }
+    }
+}
