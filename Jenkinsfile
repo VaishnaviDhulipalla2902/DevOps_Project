@@ -35,6 +35,18 @@ pipeline{
                     }
                 }
             }
-        }  
+        }
+        stage('Step 5: Ansible Deployment'){
+            steps{
+                ansiblePlaybook becomeUser: null, 
+                colorized: true,
+                credentialsId: 'docker',
+                installation: 'Ansible' 
+                disableHostKeyChecking: true, 
+                inventory: 'deployment/inventory', 
+                playbook: 'deployment/deploy.yml', 
+                sudoUser: null  
+            }          
+        }     
     }
 }
