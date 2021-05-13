@@ -8,6 +8,11 @@ pipeline{
             steps{
                 git branch: 'main', url: 'https://github.com/VaishnaviDhulipalla2902/DevOps_Project.git'
             }
-        }   
+        }
+        stage('Step 2: Build'){
+            steps{
+                sh 'pipenv shell && pip install -r requirements.txt'
+            }
+        }  
     }
 }
