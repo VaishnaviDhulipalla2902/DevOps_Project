@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Step 2: Build'){
             steps{
-                sh 'pip install --upgrade -r requirements.txt'
+                sh 'pip3 install --upgrade -r requirements.txt'
             }
         }  
     }
