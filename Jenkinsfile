@@ -36,7 +36,7 @@ pipeline{
                 }
             }
         }
-        stage('Step 5: Ansible Deployment'){
+        stage('Step 6: Ansible Deployment'){
             steps{
                 ansiblePlaybook becomeUser: null, 
                 colorized: true,
