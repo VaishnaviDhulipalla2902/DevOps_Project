@@ -14,11 +14,12 @@ pipeline{
                 sh 'pip3 install --upgrade -r requirements.txt'
             }
         }
-        // stage('Step 3: Testing'){
-        //     steps{
-        //         sh 'python3 ./manage.py runtests'
-        //     }
-        // }
+        stage('Step 3: Testing'){
+            steps{
+                sh 'python3 ./manage.py test library'
+                sh 'python3 ./manage.py test users'
+            }
+        }
         stage('Step 4: Build docker image') {
             steps {
                 script {
