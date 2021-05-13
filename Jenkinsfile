@@ -41,7 +41,7 @@ pipeline{
                 ansiblePlaybook becomeUser: null, 
                 colorized: true,
                 credentialsId: 'docker',
-                installation: 'Ansible' 
+                installation: 'Ansible',
                 disableHostKeyChecking: true, 
                 inventory: 'deployment/inventory', 
                 playbook: 'deployment/deploy.yml', 
