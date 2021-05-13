@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Step 2: Build'){
             steps{
-                sh 'virtualenv env && source env/bin/activate && pip install --upgrade -r requirements.txt'
+                sh 'pip install --upgrade -r requirements.txt'
             }
         }  
     }
