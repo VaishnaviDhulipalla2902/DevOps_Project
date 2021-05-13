@@ -11,6 +11,7 @@ pipeline{
         }
         stage('Step 2: Build'){
             steps{
+                sh 'pip install pipenv'
                 sh 'pipenv shell && pip install -r requirements.txt'
             }
         }  
