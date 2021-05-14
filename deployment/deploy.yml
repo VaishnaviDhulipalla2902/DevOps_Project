@@ -1,0 +1,11 @@
+ 
+---
+- name: Pull Docker image of Personal Library
+  hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Pull image
+      docker_image:
+        name: vaishnavi2902/personal_library:latest
+        source: pull

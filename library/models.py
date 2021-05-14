@@ -20,8 +20,8 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Post, self).save(*args, **kwargs)
         img = Image.open(self.book_img.path)
         if img.height > MAX_LEN or img.width > MAX_WIDTH :
             output_size = (MAX_LEN, MAX_WIDTH)
