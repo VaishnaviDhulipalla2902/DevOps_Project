@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
 
-MAX_WIDTH = 200
+MAX_WIDTH = 190
 MAX_LEN = 700
 
 class Post(models.Model):
