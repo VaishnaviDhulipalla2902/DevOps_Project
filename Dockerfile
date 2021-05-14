@@ -1,7 +1,6 @@
 FROM python:3
 
 ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
 
 RUN mkdir /app
 WORKDIR /app
@@ -14,3 +13,7 @@ COPY . /app
 EXPOSE 8000
 
 CMD ["python","manage.py","runserver","0.0.0.0:9010"]
+
+
+# docker run --name personal_library -d -p 9010:9010 vaishnavi2902/personal_library:latest
+# docker rm personal_library
