@@ -4,11 +4,11 @@ pipeline{
     }
     agent any
     stages{
-        // stage('Step 1: Git Clone'){
-        //     steps{
-        //         git branch: 'main', url: 'https://github.com/VaishnaviDhulipalla2902/DevOps_Project.git'
-        //     }
-        // }
+        stage('Step 1: Git Clone'){
+            steps{
+                git branch: 'main', url: 'https://github.com/VaishnaviDhulipalla2902/DevOps_Project.git'
+            }
+        }
         stage('Step 2: Build'){
             steps{
                 withPythonEnv('python3.6.9'){
