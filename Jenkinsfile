@@ -11,10 +11,8 @@ pipeline{
         }
         stage('Step 2: Build'){
             steps{
-                withPythonEnv('python3.6.9'){
-                    sh 'pipenv shell'
-                    sh 'pip3 install --upgrade -r requirements.txt'
-                }
+                sh 'pipenv shell'
+                sh 'pip3 install --upgrade -r requirements.txt'
             }
         }
         stage('Step 3: Testing'){
