@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from library.views import about, PostListView, PostCreateView, PostDetailView, UserPostListView, PostDeleteView, PostUpdateView
+from library.views import about, PostListView, PostCreateView, PostDetailView, UserPostListView, PostDeleteView, PostUpdateView, buy, borrow
 
 class TestUrls(SimpleTestCase):
     def test_library_home_url_resolves(self):
@@ -32,3 +32,13 @@ class TestUrls(SimpleTestCase):
         url = reverse('library-about')
         #print(resolve(url))
         self.assertEquals(resolve(url).func,about)
+
+    def test_buy_book(self):
+        url = reverse('buy-book')
+        #print(resolve(url))
+        self.assertEquals(resolve(url).func,buy)
+
+    def test_buy_borrow(self):
+        url = reverse('buy-borrow')
+        #print(resolve(url))
+        self.assertEquals(resolve(url).func,borrow)

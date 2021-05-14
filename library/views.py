@@ -20,6 +20,12 @@ def home(request):
 def about(request):
     return render(request, 'library/about.html', {'title': 'About'})
 
+def buy(request):
+    return render(request, 'library/book_buy.html', {'title': 'purchase'})
+
+def borrow(request):
+    return render(request, 'library/book_borrow.html', {'title': 'borrow'})
+
 class PostListView(ListView):
     model=Post
     template_name = 'library/home.html'

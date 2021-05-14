@@ -23,13 +23,3 @@ class TestViews(TestCase):
         response = self.client.get(self.detail_url)
         self.assertEquals(HttpResponse.status_code, 200)
         self.assertTemplateUsed(response,'library/user_posts.html') """
-
-    """ def test_create_new_POST(self):
-        Post.objects.create(
-            post = self.post1,
-            title='Harry Potter',
-        )
-        HttpResponse = self.client.post(self.detail_url,{
-            'title' = 'Percy Jackson',
-            'content' = 'Demigods',
-        }) """

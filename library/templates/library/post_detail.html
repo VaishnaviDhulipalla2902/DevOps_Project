@@ -17,15 +17,15 @@
       <h2 class="article-title">{{ object.title }}</h2>
       <p class="article-content">{{ object.content }}</p>
       {% if object.author == user %}
-          <div>
+          <!-- <div>
             <a class="btn btn-primary btn-sm mt-1 mb-1" href="#">Donate</a>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Sell</a>
             <a class="btn btn-success btn-sm mt-1 mb-1" href="#">Exchange</a>
-          </div>
+          </div> -->
       {% else %}
       <div>
-        <a class="btn btn-primary btn-sm mt-1 mb-1" href="#">Buy</a>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Borrow</a>
+        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'buy-book' %}">Buy</a>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'buy-borrow' %}">Borrow</a>
         <a class="btn btn-success btn-sm mt-1 mb-1" href="#">Exchange</a>
       </div>
       {% endif %}

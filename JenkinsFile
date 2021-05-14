@@ -1,25 +1,40 @@
 pipeline{
+    environment{
+        docker_image = ""
+    }
     agent any
     stages{
-        stage('Build')
-        {
-            parallel {
-                stage('Build'){
-                    steps{
-                        echo 'Building the django project'
-                    }
-                }
-                stage('Test'){
-                    steps{
-                        echo 'Testing the project'
-                    }
-                }
-            }
-        }
-        stage('Deploy'){
+        stage('Step 1: Git Clone'){
             steps{
-                echo 'Deploying the project'
+                git branch: 'simran', url: 'https://github.com/VaishnaviDhulipalla2902/DevOps_Project.git'
             }
         }
+        stage('Step 2: Build'){
+            steps{
+                bat 'pip install --upgrade -r requirements.txt'
+            }
+        }
+        stage('Step 3: Testing'){
+            steps{
+                bat 'python ./manage.py test library'
+                bat 'python ./manage.py test users'
+            }
+        }
+        stage('Step 4: Build docker image') {
+            steps {
+                script {
+                    docker_image = docker.build ""
+                }
+            }
+        }
+        stage('Step 5: Push docker image to hub') {
+            steps {
+                script {
+                    docker.withRegistry('', 'docker') {
+                        docker_image.push()
+                    }
+                }
+            }
+        }   
     }
 }
