@@ -11,7 +11,6 @@ pipeline{
         }
         stage('Step 2: Build'){
             steps{
-                sh 'virtualenv'
                 sh 'pip3 install --upgrade -r requirements.txt'
             }
         }
