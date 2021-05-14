@@ -16,8 +16,8 @@ pipeline{
         }
         stage('Step 3: Testing'){
             steps{
-                sh 'pip3 install coverage'
-                sh 'coverage run ./manage.py test'
+                sh 'python3 ./manage.py test library'
+                sh 'python3 ./manage.py test users'
             }
         }
         stage('Step 4: Build docker image') {
