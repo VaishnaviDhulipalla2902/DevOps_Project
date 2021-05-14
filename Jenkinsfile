@@ -47,14 +47,6 @@ pipeline{
                 playbook: 'deployment/deploy.yml', 
                 sudoUser: null  
             }          
-        } 
-        stage('Step 7: Run') {
-            steps{
-        d       ir('auto'){
-                    sh 'pwd'
-                    sh 'JENKINS_NODE_COOKIE=dontKillMe nohup /usr/bin/python3.6.9 manage.py runserver 0.0.0.0:8000 &'
-        }
-    }
-}      
+        }       
     }
 }
