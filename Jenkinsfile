@@ -16,6 +16,7 @@ pipeline{
         }
         stage('Step 3: Testing'){
             steps{
+                sh 'pip3 install coverage'
                 sh 'coverage run ./manage.py test'
             }
         }
