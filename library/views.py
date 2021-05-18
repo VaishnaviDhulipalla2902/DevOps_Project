@@ -10,11 +10,22 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+import logging
 # from django.http import HttpResponse
+
+logger = logging.getLogger(__name__)
 def home(request):
     context={
         'posts' : Post.objects.all()
     }
+    # DEBUG
+    logger.debug('debug')
+    # INFO
+    logger.info('Homepage')
+    # WARNING
+    logger.warning('warning')
+    # ERROR
+    logger.error('Error Occured')
     return render(request, 'library/home.html', context)
 
 def about(request):

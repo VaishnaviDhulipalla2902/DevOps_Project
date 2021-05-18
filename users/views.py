@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
+import logging
 
 # Create your views here.
+logger = logging.getLogger(__name__)
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -11,6 +13,14 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created! You are now able to login.')
+            # DEBUG
+            logger.debug('message sent to={} sent'.format(username))
+            # INFO
+            logger.info('Registration Successful={}'.format(username))
+            # WARNING
+            logger.warning('Referer {} is not in allow list'.format(username))
+            # ERROR
+            logger.error('Error Occured')
             return redirect('login')
     else:
         form = UserRegisterForm()
@@ -27,6 +37,14 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
+             # DEBUG
+            logger.debug('debug')
+            # INFO
+            logger.info('Update Successful')
+            # WARNING
+            logger.warning('warning')
+            # ERROR
+            logger.error('Error Occured')
             return redirect('profile')
 
     else:

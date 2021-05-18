@@ -8,8 +8,18 @@
                 <h2>Are you sure you want to buy the book?"</h2>
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-success" type="submit">Yes</button>
-                <a class="btn btn-outline-danger" href="{% url 'library-home' %}">Cancel</a>
+                <a class="btn btn-outline-success" onclick="successFunc()" href="{% url 'library-home' %}">Yes, I'm sure!</a>
+                <a class="btn btn-outline-danger" onclick="failureFunc()" href="{% url 'library-home' %}">No, I changed my mind!</a>
+                <script>
+                    function successFunc() {
+                      alert("Purchse request sent successfully!");
+                    }
+                </script>
+                <script>
+                    function failureFunc() {
+                      alert("Purchse request not sent!");
+                    }
+                </script>
             </div>
         </form>
     </div>

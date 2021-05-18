@@ -1,34 +1,40 @@
 {% extends "library/base.html" %}
 {% block content %}
-  <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
-    <div class="media-body">
-      <img src="{{ object.book_img.url }}">
-      <div class="article-metadata">
-        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-        {% if object.author == user %}
+  {% if user.is_authenticated and object.author != user%}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+      <div class="media-body">
+        <img src="{{ object.book_img.url }}">
+        <div class="article-metadata">
+          <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+          <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+          <h2 class="article-title">{{ object.title }}</h2>
+          <p class="article-content">{{ object.content }}</p>
           <div>
-            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'buy-book' %}">Buy</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'buy-borrow' %}">Borrow</a>
           </div>
-        {% endif %}
+        </div>      
       </div>
-      <h2 class="article-title">{{ object.title }}</h2>
-      <p class="article-content">{{ object.content }}</p>
-      {% if object.author == user %}
-          <!-- <div>
-            <a class="btn btn-primary btn-sm mt-1 mb-1" href="#">Donate</a>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Sell</a>
-            <a class="btn btn-success btn-sm mt-1 mb-1" href="#">Exchange</a>
-          </div> -->
-      {% else %}
-      <div>
-        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'buy-book' %}">Buy</a>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'buy-borrow' %}">Borrow</a>
-        <!-- <a class="btn btn-success btn-sm mt-1 mb-1" href="#">Exchange</a> -->
+    </article>
+  {% elif user.is_authenticated and object.author == user %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+      <div class="media-body">
+        <img src="{{ object.book_img.url }}">
+        <div class="article-metadata">
+          <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+          <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+          <h2 class="article-title">{{ object.title }}</h2>
+          <p class="article-content">{{ object.content }}</p>
+        </div> 
+        <div>
+          <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+        </div>     
       </div>
-      {% endif %}
-    </div>
-  </article>
+    </article>
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-outline-info">Login to view the post!</a>          
+  {% endif %}
 {% endblock content %}

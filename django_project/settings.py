@@ -103,6 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ELASTICSEARCH_DSL={
+    'default': {
+        'hosts': 'localhost:9200'
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -128,5 +133,29 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = 'library-home'
 LOGIN_URL = 'login'
+
+LOGGING = {
+    'version':1,
+    'loggers':{
+        'django':{
+            'handlers':['file'],
+            'level':'DEBUG'
+        }
+    },
+    'handlers':{
+        'file':{
+            'level':'INFO',
+            'class':'logging.FileHandler',
+            'filename':'./logs/debug.log',
+            'formatter':'simpleLibrary',
+        }
+    },
+    'formatters':{
+        'simpleLibrary':{
+            'format':'{levelname} {message}',
+            'style':'{',
+        }
+    }
+}
